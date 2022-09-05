@@ -1,4 +1,4 @@
-# Day 01 XD
+# Day 01
 
 ## Computing without computer
 
