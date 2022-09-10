@@ -1,71 +1,160 @@
-let canvas, video;
+const points = 50;
+const speedModifier = 0.9;
+const minSpeed = 0.4;
+const bounceBorder = 10;
+const pointArrayX = [];
+const pointArrayY = [];
+const pointSpeedX = [];
+const pointSpeedY = [];
+const pointColor = [];
+let distances = [];
+let listances = [];
+let shortances = [];
+let circleSizes = [];
 
-// Default P5 setup function
 function setup() {
-  canvas = createCanvas(windowWidth, windowHeight);
-  video = createCapture(VIDEO);
-  video.hide();
+  createCanvas(window.innerWidth, window.innerHeight);
+  // noLoop();
+  generatePoints(points);
+  noSmooth();
+  colorMode(HSB, 100);
+  // frameRate(2);
+  background(0);
 }
 
-// Default P5 draw loop function
 function draw() {
-  drawImage(video);
-}
-
-function keyPressed() {
-  if (key == "s" || key == "S") saveImage(width, height);
-}
-
-// Tools
-
-// Make sketch full screen
-function goFullScreen() {
-  let isFullScreen = Boolean(fullscreen());
-  fullscreen(!isFullScreen);
-}
-
-// Resize canvas when the window is resized
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight, false);
-}
-
-// Sketch is double clicked
-function doubleClicked() {
-  goFullScreen();
-}
-
-// Timestamp
-function timestamp() {
-  return Date.now();
-}
-
-// Thumb
-function saveImage(w, h) {
-  let img = get(width / 2 - w / 2, height / 2 - h / 2, w, h);
-  save(img, `screenshot-${timestamp()}.jpg`);
-}
-
-// Draw centered full page image
-function drawImage(img) {
-  // var
-  let imgWidth = width;
-  let imgHeight = height;
-  let imgPosX = 0;
-  let imgPosY = 0;
-
-  // Calculate aspect ratios
-  const imgAspectRatio = img.width / img.height;
-  const sketchAspectRatio = width / height;
-
-  // Calculate img size and position
-  if (sketchAspectRatio >= imgAspectRatio) {
-    imgHeight = (img.height * width) / img.width;
-    imgPosY = -(imgHeight - height) / 2;
-  } else {
-    imgWidth = (img.width * height) / img.height;
-    imgPosX = -(imgWidth - width) / 2;
+  background(0, 100);
+  for (let i = 0; i < points; i++) {
+    for (let k = 0; k < points; k++) {
+      if (i < k) {
+        generateLines(i, k);
+      }
+      if (i != k) {
+        distances.push(dist(pointArrayX[i], pointArrayY[i], pointArrayX[k], pointArrayY[k]));
+      }
+      
+      // Drawing of the White Dots
+      // ===========================
+      stroke('white');
+      strokeWeight(5);
+      point(pointArrayX[i], pointArrayY[i])
+    }
+    distances.push(dist(pointArrayX[i], pointArrayY[i], pointArrayX[i], -bounceBorder))
+    distances.push(dist(pointArrayX[i], pointArrayY[i], pointArrayX[i], height+bounceBorder))
+    distances.push(dist(pointArrayX[i], pointArrayY[i], -bounceBorder, pointArrayY[i]))
+    distances.push(dist(pointArrayX[i], pointArrayY[i], width+bounceBorder, pointArrayY[i]))
+    distances.sort(function(a, b){return a - b});
+    shortances.push(distances[0]);
+    
+    listances.push(distances);
+    distances = [];
+    
+    
+    // RBG Cycle
+    // ==============
+    pointColor[i] = (pointColor[i]+0.2)%100;
+    
+    linearBounces(i);    
+    // randomBounces(i);
+    
+    // Adding the Speed to the Point Coordinates
+    // ============================================
+    pointArrayX[i] = pointArrayX[i]+pointSpeedX[i];
+    pointArrayY[i] = pointArrayY[i]+pointSpeedY[i];
+    stroke(pointColor[i], 100, 100);
   }
+  
+  
+  // for (let i = 0; i < points; i++) {
+  //   strokeWeight(2);
+  //   fill(0, 0, 0);
+  //   let index = shortances.indexOf(Math.min.apply(null, shortances));
+  //   circleSizes[index] = shortances[index];
+  //   if (shortances[index] > Math.min.apply(null, circleSizes)) {
+  //     circle(pointArrayX[index], pointArrayY[index], shortances[index]*2-circleSizes[index])
+  //   } else {
+  //     circle(pointArrayX[index], pointArrayY[index], shortances[index])
+  //   }
+  //   shortances[index] = 10000;
+  // }
+  // // console.log(shortances);
+  // shortances = [];
 
-  // Draw image
-  image(img, imgPosX, imgPosY, imgWidth, imgHeight);
+
+
+  // for (let i = 0; i < points; i++) {
+  //   strokeWeight(3);
+  //   stroke(pointColor[i], 100, 100);
+  //   fill(0, 0, 0);
+  //   let distanceMin = Math.min.apply(null, listances[i]);
+
+  //   if (listances[i][listances[i].indexOf(distanceMin)] < distanceMin) {
+  //     circle(pointArrayX[i], pointArrayY[i], distanceMin*2-listances[i].indexOf(distanceMin));
+  //   } else {
+  //     circle(pointArrayX[i], pointArrayY[i], distanceMin);
+  //   }
+  // }
+  // listances = [];
+}
+
+function generateLines(i, k) {
+  strokeWeight(0.5);
+  // Line Gradient
+  // ===============
+  var grad = this.drawingContext.createLinearGradient(pointArrayX[i], pointArrayY[i], pointArrayX[k], pointArrayY[k]);
+  grad.addColorStop(0, color(pointColor[i], 00, 50));
+  grad.addColorStop(1, color(pointColor[k], 00, 50));
+  this.drawingContext.strokeStyle = grad;
+
+  line(pointArrayX[i], pointArrayY[i], pointArrayX[k], pointArrayY[k]);
+}
+
+function generatePoints(points) {
+  for (let i = 0; i < points; i++) {
+    var x = Math.random()*(width-2*bounceBorder)+bounceBorder;
+    pointArrayX.push(x);
+    var y = Math.random()*(height-2*bounceBorder)+bounceBorder;
+    pointArrayY.push(y);
+
+    // Starting Direction of the points
+    // ====================================
+    var c = Math.random();
+    if (c < 0.25) {
+      pointSpeedX.push(Math.random()*speedModifier+minSpeed);
+      pointSpeedY.push(Math.random()*speedModifier+minSpeed);
+    } else if (c < 0.5) {
+      pointSpeedX.push(-(Math.random()*speedModifier+minSpeed));
+      pointSpeedY.push(Math.random()*speedModifier+minSpeed);
+    } else if (c < 0.75) {
+      pointSpeedX.push(-(Math.random()*speedModifier+minSpeed));
+      pointSpeedY.push(-(Math.random()*speedModifier+minSpeed));
+    } else {
+      pointSpeedX.push(Math.random()*speedModifier+minSpeed);
+      pointSpeedY.push(-(Math.random()*speedModifier+minSpeed));
+    }
+
+    // Color Array
+    // ===============
+    pointColor.push((00/points)*i);
+  }
+}
+
+function linearBounces(i) {
+  if (pointArrayX[i] >= width-bounceBorder || pointArrayX[i] <= bounceBorder) {
+    pointSpeedX[i] = -pointSpeedX[i];
+  } else if (pointArrayY[i] >= height-bounceBorder || pointArrayY[i] <= bounceBorder) {
+    pointSpeedY[i] = -pointSpeedY[i];
+  } 
+}
+
+function randomBounces(i) {
+  if (pointArrayX[i] >= width) {
+    pointSpeedX[i] = -(Math.random()*speedModifier+minSpeed);
+  } else if (pointArrayX[i] <= 0) {
+    pointSpeedX[i] = Math.random()*speedModifier+minSpeed;
+  } else if (pointArrayY[i] >= height) {
+    pointSpeedY[i] = -(Math.random()*speedModifier+minSpeed);
+  } else if (pointArrayY[i] <= 0) {
+    pointSpeedY[i] = Math.random()*speedModifier+minSpeed;
+  }
 }
