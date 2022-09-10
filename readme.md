@@ -21,6 +21,10 @@ On my next step i wanted to move them around and interacting with the border.
 
 Here they are bouncing around inside the canvas. Additionally i made a function wich wich made the bouncing angle random.
 
+{% raw %}
+<iframe src="content/day01/03/index.html" width="100%" height="450" frameborder="no"></iframe>
+{% endraw %}
+
 
 ```js
 // Javascript code with syntax highlighting.
