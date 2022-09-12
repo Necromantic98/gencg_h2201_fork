@@ -14,7 +14,7 @@ const posCircleXhorRev = []
 const posCircleYhorRev = []
 
 function setup() {
-  createCanvas(1200, 600);
+  createCanvas(window.innerWidth, window.innerHeight);
   // noLoop();
   generateCircleCoord();
   colorMode(HSB, 100);
