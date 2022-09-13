@@ -1,6 +1,6 @@
 const circlesHor = 10;
 const circlesVert = circlesHor/2;
-const diameter = 38;
+const diameter = 19;
 const speed = 2;
 const colorModifier = 0.01;
 let color = 0;
