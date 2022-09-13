@@ -1,6 +1,6 @@
 const circlesHor = 10;
 const circlesVert = circlesHor/2;
-const diameter = 19;
+const diameter = 22;
 const speed = 2;
 const colorModifier = 0.01;
 let color = 0;
@@ -49,8 +49,8 @@ function draw() {
     }
   }
 
-  console.log(posCircleXup)
-  console.log(posCircleYup)
+  // console.log(posCircleXup)
+  // console.log(posCircleYup)
   fill(0, 0, 0)
   stroke(100, 100, 0)
   rect(0, 0, width, diameter/2)
