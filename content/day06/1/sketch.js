@@ -34,9 +34,12 @@ function gotDevices(deviceInfos) {
 
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
-  navigator.mediaDevices.enumerateDevices().then(gotDevices);
+  // navigator.mediaDevices.enumerateDevices().then(gotDevices);
   noStroke();
   background(0)
+  cam = createCamera(VIDEO);
+  cam.size(camWidth, camHeight)
+  cam.hide();
 }
 
 function draw() {
