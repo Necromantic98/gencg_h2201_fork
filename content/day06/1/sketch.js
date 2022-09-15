@@ -37,7 +37,7 @@ function setup() {
   // navigator.mediaDevices.enumerateDevices().then(gotDevices);
   noStroke();
   background(0)
-  cam = createCamera(VIDEO);
+  cam = createCapture(VIDEO);
   cam.size(camWidth, camHeight)
   cam.hide();
 }
