@@ -8,4 +8,6 @@ The only idea that i had, was to convert your webcam video into dots. The dots s
 <iframe src="content/day06/1/index.html" width="100%" height="450" frameborder="no"></iframe>
 {% endraw %}
 
+[Animated](content/day06/1/index.html)
+
 ![Screenshot Webcam Dots](content/day06/1/Screenshot.PNG)
