@@ -13,18 +13,18 @@ function draw() {
   const minutes = today.getMinutes();
   const hours   = today.getHours();
 
-  const radiusSec  = width/8;
-  const radiusMin  = width/6;
-  const radiusHour = width/5;
+  const radiusSec  = width/17;
+  const radiusMin  = width/10;
+  const radiusHour = width/7;
 
-  const radiusLine = width/2.3;
+  const radiusLine = width/6.6;
 
   const ellipseMod = pow(2, 1.6);
 
-  const diameterSun = width/10;
-  const diameterSec = width/16;
-  const diameterMin = width/15;
-  const diameterHour = width/14;
+  const diameterSun = width/12;
+  const diameterSec = width/21;
+  const diameterMin = width/20;
+  const diameterHour = width/18;
 
   const xSec = cos((seconds+milliSec/1000)*6-90)*radiusSec*ellipseMod+width/2;
   const ySec = sin((seconds+milliSec/1000)*6-90)*radiusSec+height/2;
