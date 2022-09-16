@@ -13,9 +13,9 @@ function draw() {
   const minutes = today.getMinutes();
   const hours   = today.getHours();
 
-  const radiusSec  = width/4.5;
-  const radiusMin  = width/3.3;
-  const radiusHour = width/2.5;
+  const radiusSec  = width/8;
+  const radiusMin  = width/6;
+  const radiusHour = width/5;
 
   const radiusLine = width/2.3;
 
