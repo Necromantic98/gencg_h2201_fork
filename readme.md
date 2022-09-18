@@ -19,11 +19,15 @@ On my next step i wanted to move them around and interacting with the border.
 <iframe src="content/day01/02/index.html" width="100%" height="450" frameborder="no"></iframe>
 {% endraw %}
 
+[Fullscreen](content/day01/02/index.html)
+
 Here they are bouncing around inside the canvas. Additionally i made a function wich wich made the bouncing angle random.
 
 {% raw %}
 <iframe src="content/day01/03/index.html" width="100%" height="450" frameborder="no"></iframe>
 {% endraw %}
+
+[Fullscreen](content/day01/03/index.html)
 
 After that i wanted to bring more color to the drawing. I made it so that it cycles through the color spectrum.
 
@@ -31,8 +35,12 @@ After that i wanted to bring more color to the drawing. I made it so that it cyc
 <iframe src="content/day01/04/index.html" width="100%" height="450" frameborder="no"></iframe>
 {% endraw %}
 
+[Fullscreen](content/day01/04/index.html)
+
 Or a variant that every point has a different color and the lines have a gradient.
 
 {% raw %}
 <iframe src="content/day01/05/index.html" width="100%" height="450" frameborder="no"></iframe>
 {% endraw %}
+
+[Fullscreen](content/day01/05/index.html)

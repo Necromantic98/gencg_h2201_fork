@@ -8,4 +8,6 @@ In terms of grids i had the idea of dots that move in a grid-like pattern. Addit
 <iframe src="content/day02/1/index.html" width="100%" height="450" frameborder="no"></iframe>
 {% endraw %}
 
+[Fullscreen](content/day02/1/index.html)
+
 The black border around the canvas was necessary because of the loop-effect of the dots. I could have done it without the border, but this was the easier solution and far less time consuming.

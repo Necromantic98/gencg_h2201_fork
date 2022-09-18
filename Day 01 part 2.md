@@ -8,11 +8,15 @@ On my next step i had the idea to make the points as circles. The circles should
 <iframe src="content/day01/06/index.html" width="100%" height="450" frameborder="no"></iframe>
 {% endraw %}
 
+[Fullscreen](content/day01/06/index.html)
+
 The final minor adjustment that i did, was a 'fade-out-effect', which gave it a more dynamic effect. 
 
 {% raw %}
 <iframe src="content/day01/07/index.html" width="100%" height="450" frameborder="no"></iframe>
 {% endraw %}
+
+[Fullscreen](content/day01/07/index.html)
 
 All the functions mentioned above can be removed or combined. For example if you dont like the lines that connect the dots, you can draw just the dots.
 
@@ -20,3 +24,4 @@ All the functions mentioned above can be removed or combined. For example if you
 <iframe src="content/day01/08/index.html" width="100%" height="450" frameborder="no"></iframe>
 {% endraw %}
 
+[Fullscreen](content/day01/08/index.html)

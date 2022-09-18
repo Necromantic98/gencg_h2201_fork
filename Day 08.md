@@ -7,3 +7,5 @@ The last topic was Interaction and my idea was when you click on the canvas ther
 {% raw %}
 <iframe src="content/day08/1/index.html" width="100%" height="450" frameborder="no"></iframe>
 {% endraw %}
+
+[Fullscreen](content/day08/1/index.html)
